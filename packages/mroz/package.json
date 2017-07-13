@@ -8,6 +8,7 @@
     "clean": "rm -rf ./lib ./node_modules",
     "jest:watch": "jest --watch",
     "jest": "jest",
+    "prepublish": "npm-run-all build",
     "rimraf-babel-cache": "rimraf node_modules/.cache/babel-loader",
     "test": "jest",
     "watch:lib": "babel --watch --out-dir ./lib ./src",
@@ -44,18 +45,14 @@
     "react-redux": "^5.0.0"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
