@@ -2,6 +2,8 @@
   "name": "mroz",
   "version": "0.0.3",
   "main": "lib/index.js",
+  "license": "MIT",
+  "repository": "vhotmar/mroz",
   "scripts": {
     "build:npm": "babel ./src --out-dir ./lib",
     "build": "mkdir -p ./lib && npm-run-all build:npm",
@@ -45,18 +47,14 @@
     "react-redux": "^5.0.0"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
