@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions arc should dispatch actions 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+      "isPolling": false,
+      "key": "sample.request",
+    },
+    "type": "@@mroz/REQUEST_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+      "key": "sample.request",
+      "time": 2017-06-13T04:41:20.000Z,
+    },
+    "type": "@@mroz/REQUEST_SUCCESS",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`actions arc should dispatch actions 2`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+      "isPolling": false,
+      "key": "sample.request",
+    },
+    "type": "@@mroz/REQUEST_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+      "key": "sample.request",
+    },
+    "type": "@@mroz/REQUEST_FAIL",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;
+
+exports[`actions arc should filter out pending request 1`] = `Array []`;
+
+exports[`actions arc should force request 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+      "isPolling": false,
+      "key": "sample.request",
+    },
+    "type": "@@mroz/REQUEST_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+      "key": "sample.request",
+      "time": 2017-06-13T04:41:20.000Z,
+    },
+    "type": "@@mroz/REQUEST_SUCCESS",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`actions arc should not refetch request if refetchTimeout have not passed 1`] = `Array []`;
+
+exports[`actions arc should refetch request if passed refetchTimeout 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+      "isPolling": false,
+      "key": "sample.request",
+    },
+    "type": "@@mroz/REQUEST_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+      "key": "sample.request",
+      "time": 2017-06-13T04:41:20.000Z,
+    },
+    "type": "@@mroz/REQUEST_SUCCESS",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;

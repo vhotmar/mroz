@@ -1,3 +1,4 @@
 import * as request from "./request";
+import * as auth from "./auth";
 
-export { request };
+export { request, auth };

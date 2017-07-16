@@ -1,30 +1,37 @@
 import R from "ramda";
 import Backoff from "backo";
+import actions from "./actions";
 import { Observable } from "rxjs";
-import { actions } from "../plugins/request";
-import {
-  addRequest,
-  addSuccess,
-  addFail,
-  addWrapper,
-  addFilter
-} from "../epics/async";
-import selectors from "../selectors/";
+import { request as requestActions } from "../actions";
+import { addWrapper, addFilter, addNormalize } from "../epics/async";
+import { request as requestSelectors } from "../selectors/";
 
 const retryableStatusCodes = [0, 408, 429, 503, 504];
+const defaultBackoffConfig = {
+  minDuration: 300,
+  maxDuration: 2000,
+  maxAttempts: 5
+};
 
-export default function request({ polling, backoff: backoffConfig }) {
-  return R.compose(
+export default function request(
+  {
+    polling,
+    backoff: backoffConfig = defaultBackoffConfig,
+    refetchTimeout
+  } = {}
+) {
+  return R.pipe(
     // Dispatch request, success, fail actions which are going to be handled by
     // reducer
-    addRequest(({ action, id }) =>
-      Observable.of(actions.request(id, action.meta.request.key))
-    ),
-    addSuccess((data, { action, id }) =>
-      Observable.of(actions.success(id, action.meta.request.key, data))
-    ),
-    addFail((error, { action, id }) =>
-      Observable.of(actions.fail(id, action.meta.request.key, error))
+    actions(
+      ({ action, id }) =>
+        requestActions.request(id, action.meta.request.key, {
+          isPolling: !!polling
+        }),
+      (data, { action, id }) =>
+        requestActions.success(id, action.meta.request.key, data),
+      (error, { action, id }) =>
+        requestActions.fail(id, action.meta.request.key, error)
     ),
     // Filter requests
     addFilter((stream$, { store }) =>
@@ -32,7 +39,7 @@ export default function request({ polling, backoff: backoffConfig }) {
         const state = store.getState();
         const meta = action.meta.request;
 
-        const request = selectors.request.requestByKey(state, meta.key);
+        const request = requestSelectors.requestByKey(state, meta.key);
 
         // Allow - first time request
         if (!request) return true;
@@ -59,9 +66,9 @@ export default function request({ polling, backoff: backoffConfig }) {
       })
     ),
     // Ensure requests are going to be executed, retried, polled and cancelled
-    addWrapper((stream$, { id, actions$, action, store }) => {
-      const cancelStream = actions$
-        .ofType(String(actions.cancel))
+    addWrapper((stream$, { id, action$, action, store }) => {
+      const cancelStream = action$
+        .ofType(String(requestActions.cancel))
         .filter(action => action.meta.async.id === id);
 
       const pollingStream = polling
@@ -69,7 +76,7 @@ export default function request({ polling, backoff: backoffConfig }) {
             const state = store.getState();
             const meta = action.meta.request;
 
-            const request = selectors.request.requestByKey(state, meta.key);
+            const request = requestSelectors.requestByKey(state, meta.key);
 
             // Ensure we are not requesting more than needed
             if (Date.now() - request.latestUpdate < polling) return false;
@@ -79,7 +86,7 @@ export default function request({ polling, backoff: backoffConfig }) {
         : Observable.empty();
 
       return (
-        stream
+        stream$
           // Handling errors
           .retryWhen(errors$ => {
             const backoff = new Backoff({
@@ -108,6 +115,8 @@ export default function request({ polling, backoff: backoffConfig }) {
           // Cancelation
           .takeUntil(cancelStream)
       );
-    })
+    }),
+    // If everything went correctly, normalize the value
+    addNormalize(data => data.response)
   );
 }

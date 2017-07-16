@@ -1,14 +1,15 @@
-import { createEpicMiddleware, combineEpics } from "redux-observable";
-import { createAction } from "redux-actions";
 import R from "ramda";
+import { createEpicMiddleware, combineEpics } from "redux-observable";
+
+import { addMiddleware } from "./utils";
 
 const dependenciesLens = R.lensPath(["meta", "dependencies"]);
 const epicsLens = R.lensPath(["meta", "epics"]);
 
-export const addDependencies = (plugin = {}, dependencies = {}) =>
+export const addDependencies = (dependencies = {}) => (plugin = {}) =>
   R.over(dependenciesLens, R.merge(dependencies), plugin);
 
-export default ({ epic, dependencies = {}, hotReloadPath }) => (
+export default ({ epic, dependencies = {}, hotReloadPath } = {}) => (
   plugin = {}
 ) => {
   const pluginEpics = R.view(epicsLens, plugin);
@@ -17,7 +18,7 @@ export default ({ epic, dependencies = {}, hotReloadPath }) => (
   const addEpic = R.append(R.__, pluginEpics);
   const addDependencies = R.merge(R.__, pluginDependencies);
 
-  const getEpics = R.compose(combineEpics, addEpic);
+  const getEpics = epic => combineEpics(...addEpic(epic));
 
   const middleware = createEpicMiddleware(getEpics(epic), {
     dependencies: addDependencies(dependencies)

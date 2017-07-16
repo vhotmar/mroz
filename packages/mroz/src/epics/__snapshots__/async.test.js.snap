@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async epic epic calls work function when request_action is dispatched 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`async epic epic fails when work fails 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "fail",
+      },
+    },
+    "type": "error_type",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;
+
+exports[`async epic epic propagates id 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "sampleid",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "sampleid",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "sampleid",
+        "type": "success",
+      },
+    },
+    "type": "success_type",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "sampleid",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": 1,
+      "id": "sampleid",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`async epic epic runs with configuration (complex case) 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "request",
+      },
+    },
+    "type": "request_type",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "data": 3,
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "type": "success_type_2",
+  },
+  Object {
+    "data": 3,
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "type": "success_type",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": 3,
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "request",
+      },
+    },
+    "type": "request_type",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "data": 5,
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "type": "success_type_2",
+  },
+  Object {
+    "data": 5,
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "type": "success_type",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "uuid",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": 5,
+      "id": "uuid",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;

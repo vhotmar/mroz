@@ -1,0 +1,215 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`form arc should accept function as form name 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+      "form": "sample_form",
+    },
+    "type": "@@redux-form/START_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "error": false,
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+      "form": "sample_form",
+    },
+    "payload": undefined,
+    "type": "@@redux-form/STOP_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`form arc should dispatch actions 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+      "form": "sample_form",
+    },
+    "type": "@@redux-form/START_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "error": false,
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+      "form": "sample_form",
+    },
+    "payload": undefined,
+    "type": "@@redux-form/STOP_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`form arc should dispatch actions 2`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+      "form": "sample_form",
+    },
+    "type": "@@redux-form/START_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "error": false,
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+      "form": "sample_form",
+    },
+    "payload": undefined,
+    "type": "@@redux-form/STOP_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;
+
+exports[`form arc should map errors 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+      "form": "sample_form",
+    },
+    "type": "@@redux-form/START_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "error": true,
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+      "form": "sample_form",
+    },
+    "payload": Object {
+      "data": "error",
+    },
+    "type": "@@redux-form/STOP_SUBMIT",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;

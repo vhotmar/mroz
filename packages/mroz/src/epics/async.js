@@ -1,23 +1,24 @@
 import R from "ramda";
 import isFunction from "lodash/isFunction";
 import { Observable } from "rxjs";
+import asyncArc from "../arcs/async";
 
 const emptyObservableFn = () => Observable.empty();
 const identity = x => x;
 
-const mergeObservable = R.curry(
-  (a = emptyObservableFn, b = emptyObservableFn) => (...args) =>
-    Observable.merge(a(...args), b(...args))
-);
+const mergeObservableCreator = (a = emptyObservableFn) => (
+  b = emptyObservableFn
+) => (...args) => Observable.merge(b(...args), a(...args));
 
-const makeObservableEdit = prop =>
-  R.curry((newProp = emptyObservableFn, config) =>
-    R.over(R.lensProp(prop), mergeObservable(newProp), config)
-  );
+const makeObservableEdit = propName => newProp => (config = {}) =>
+  R.over(R.lensProp(propName), mergeObservableCreator(newProp), config);
 
-const makeComposeEdit = prop =>
-  R.curry((newProp = identity, config) =>
-    R.over(R.lensProp(prop), R.compose(newProp), config)
+const makeComposeEdit = propName => (newProp = identity) => (config = {}) =>
+  R.over(
+    R.lensProp(propName),
+    prop => (s, ...args) =>
+      newProp(isFunction(prop) ? prop(s, ...args) : s, ...args),
+    config
   );
 
 export const addRequest = makeObservableEdit("request");
@@ -40,14 +41,14 @@ export default function epic(type, work, config) {
     wrapper = identity,
     filter = identity,
     normalize = identity
-  } = isFunction(config) ? config({}) : config;
+  } = asyncArc()(isFunction(config) ? config({}) : config);
 
-  return (actions$, store, deps) => {
-    const baseStream = filter(actions$.ofType(type), { actions$, store, deps });
+  return (action$, store, deps) => {
+    const baseStream = filter(action$.ofType(type), { action$, store, deps });
 
     return baseStream.flatMap(action => {
-      const id = action.meta.async.id || deps.async.uuid();
-      const config = { action, actions$, id, deps, store };
+      const id = R.path(["meta", "async", "id"], action) || deps.async.uuid();
+      const config = { action, action$, id, deps, store };
 
       const mapMeta = type => action =>
         R.assocPath(["meta", "async"], { id, type }, action);
@@ -55,11 +56,11 @@ export default function epic(type, work, config) {
       return Observable.merge(
         request(config).map(mapMeta("request")),
         wrapper(
-          normalize(work(config), config)
-            .flatMap(data => success(data, config).map(mapMeta("success")))
-            .catch(error => fail(error, config).map(mapMeta("fail"))),
+          work(config)
+            .map(data => normalize(data, config))
+            .flatMap(data => success(data, config).map(mapMeta("success"))),
           config
-        )
+        ).catch(error => fail(error, config).map(mapMeta("fail")))
       );
     });
   };

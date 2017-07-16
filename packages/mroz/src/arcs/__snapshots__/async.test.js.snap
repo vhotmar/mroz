@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async arc should dispatch actions 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`async arc should dispatch actions 2`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;

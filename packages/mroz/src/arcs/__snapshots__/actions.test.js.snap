@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions arc should dispatch all actions 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "type": "actions_request",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "type": "actions_success",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`actions arc should dispatch all actions 2`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "type": "actions_request",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "type": "actions_fail",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;
+
+exports[`actions arc should dispatch present actions 1`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "type": "actions_request",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`actions arc should dispatch present actions 2`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "type": "actions_success",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "success",
+      },
+    },
+    "payload": Object {
+      "data": Object {
+        "data": "foo",
+      },
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_SUCCESS",
+  },
+]
+`;
+
+exports[`actions arc should dispatch present actions 3`] = `
+Array [
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "request",
+      },
+    },
+    "payload": Object {
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_REQUEST",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "type": "actions_fail",
+  },
+  Object {
+    "meta": Object {
+      "async": Object {
+        "id": "id",
+        "type": "fail",
+      },
+    },
+    "payload": Object {
+      "error": "error",
+      "id": "id",
+    },
+    "type": "@@mroz/ASYNC_FAIL",
+  },
+]
+`;

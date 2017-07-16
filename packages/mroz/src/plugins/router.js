@@ -1,5 +1,11 @@
-import { routerMiddleware } from "react-router-redux";
-import { addMiddleware } from "./utils";
+import { compose } from "ramda";
+import { routerMiddleware, routerReducer } from "react-router-redux";
+import { addMiddleware, addReducers } from "./utils";
 
-export default ({ history }) => plugin =>
-  addMiddleware(routerMiddleware(history))(plugin);
+export default ({ history }) =>
+  compose(
+    addMiddleware([routerMiddleware(history)]),
+    addReducers({
+      router: routerReducer
+    })
+  );
