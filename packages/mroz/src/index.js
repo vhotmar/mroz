@@ -6,14 +6,9 @@ import * as selectors from "./selectors";
 
 export { default as createStore } from "./createStore";
 export { default as createAsyncActions } from "./createAsyncActions";
-export { default as createRequestAction } from "./createRequestAction";
+export { default as createAsyncAction } from "./createAsyncAction";
+export { default as createRequestActions } from "./createRequestActions";
 export { default as wrapAction } from "./wrapAction";
+export { default as promisify } from "./promisify";
 
 export { epics, arcs, plugins, actions, selectors };
-
-export const defaultPlugin = {
-  reducers: {},
-  middleware: [],
-  enhancers: [],
-  hooks: []
-};

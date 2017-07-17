@@ -20,13 +20,14 @@ export const asyncTest = ({
   action = defaultAction,
   action$,
   getState,
+  dispatch,
   work = () => Observable.of({ data: "foo" }),
   config,
   callback,
   deps = {}
 }) => {
   const a$ = action$ || ActionsObservable.of(action);
-  const store = getState ? { getState } : null;
+  const store = getState ? { getState, dispatch } : null;
   const d = { ...defaultDeps, ...deps };
   const stream = async(REQUEST_TYPE, work, config)(a$, store, d).toArray();
 

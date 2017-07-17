@@ -46,6 +46,11 @@ export default function request(
 
         // Allow - force request
         if (meta.force) {
+          if (request.isPending) {
+            // Cancel pending request
+            store.dispatch(requestActions.cancel(request.key));
+          }
+
           return true;
         }
 

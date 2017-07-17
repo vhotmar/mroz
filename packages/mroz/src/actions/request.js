@@ -2,7 +2,7 @@ import { createAction } from "redux-actions";
 
 export const request = createAction(
   "@@mroz/REQUEST_REQUEST",
-  (id, key, { isPolling = false }) => ({
+  (id, key, { isPolling = false } = {}) => ({
     id,
     key,
     isPolling
@@ -25,6 +25,6 @@ export const fail = createAction("@@mroz/REQUEST_FAIL", (id, key, error) => ({
   error
 }));
 
-export const cancel = createAction("@@mrot/REQUEST_CANCEL", id => ({
-  id
+export const cancel = createAction("@@mrot/REQUEST_CANCEL", key => ({
+  key
 }));

@@ -18,20 +18,22 @@ export function authAjax(state) {
     );
 }
 
+export const reducer = handleActions(
+  {
+    [actions.auth.login]: (state, { payload: { token, profile } }) => ({
+      authenticated: true,
+      token,
+      profile
+    }),
+    [actions.auth.logout]: () => ({ authenticated: false })
+  },
+  { authenticated: false }
+);
+
 export default () =>
   R.compose(
     addReducers({
-      auth: handleActions(
-        {
-          [actions.auth.login]: (state, { payload: { token, profile } }) => ({
-            authenticated: true,
-            token,
-            profile
-          }),
-          [actions.auth.logout]: () => ({ authenticated: false })
-        },
-        { authenticated: false }
-      )
+      auth: reducer
     }),
     addDependencies({ authAjax })
   );

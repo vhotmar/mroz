@@ -32,7 +32,7 @@ describe("actions arc", () => {
     _now = Date.now;
 
     /*eslint no-global-assign:off*/
-    Date.now = () => constantDate;
+    Date.now = () => Number(constantDate);
   });
 
   afterAll(() => {
@@ -72,6 +72,8 @@ describe("actions arc", () => {
   });
 
   it("should force request", () => {
+    const dispatchFunction = jest.fn();
+
     asyncTest({
       ...t,
       action: {
@@ -86,11 +88,19 @@ describe("actions arc", () => {
       getState: () =>
         state({
           "sample.request": {
+            id: "1234",
+            key: "sample.request",
             isPending: true
           }
         }),
+      dispatch: dispatchFunction,
       callback: res => {
         expect(res).toMatchSnapshot();
+        expect(dispatchFunction).toHaveBeenCalledTimes(1);
+        expect(dispatchFunction).toHaveBeenCalledWith({
+          payload: { key: "sample.request" },
+          type: "@@mrot/REQUEST_CANCEL"
+        });
       }
     }).exec();
   });
