@@ -2,9 +2,12 @@ import request from "./request";
 import { Observable } from "rxjs";
 import { asyncTest, REQUEST_TYPE } from "../epics/async.test.utils";
 
-const state = (r = {}) => ({
+const state = (r = {}, a = {}) => ({
   request: {
-    requestsByKey: r
+    byKey: r
+  },
+  async: {
+    byId: a
   }
 });
 
@@ -60,11 +63,18 @@ describe("actions arc", () => {
     asyncTest({
       ...t,
       getState: () =>
-        state({
-          "sample.request": {
-            isPending: true
+        state(
+          {
+            "sample.request": {
+              id: "id1"
+            }
+          },
+          {
+            id1: {
+              isPending: true
+            }
           }
-        }),
+        ),
       callback: res => {
         expect(res).toMatchSnapshot();
       }
@@ -86,19 +96,24 @@ describe("actions arc", () => {
         }
       },
       getState: () =>
-        state({
-          "sample.request": {
-            id: "1234",
-            key: "sample.request",
-            isPending: true
+        state(
+          {
+            "sample.request": {
+              id: "1234"
+            }
+          },
+          {
+            "1234": {
+              isPending: true
+            }
           }
-        }),
+        ),
       dispatch: dispatchFunction,
       callback: res => {
         expect(res).toMatchSnapshot();
         expect(dispatchFunction).toHaveBeenCalledTimes(1);
         expect(dispatchFunction).toHaveBeenCalledWith({
-          payload: { key: "sample.request" },
+          payload: { id: "1234" },
           type: "@@mrot/REQUEST_CANCEL"
         });
       }
@@ -109,11 +124,17 @@ describe("actions arc", () => {
     asyncTest({
       ...t,
       getState: () =>
-        state({
-          "sample.request": {
-            latestUpdate: Number(constantDate) - 3000
+        state(
+          {
+            "sample.request": {
+              id: "id1",
+              latestUpdate: Number(constantDate) - 3000
+            }
+          },
+          {
+            id1: {}
           }
-        }),
+        ),
       callback: res => {
         expect(res).toMatchSnapshot();
       }
@@ -124,11 +145,17 @@ describe("actions arc", () => {
     asyncTest({
       ...t,
       getState: () =>
-        state({
-          "sample.request": {
-            latestUpdate: Number(constantDate) - 1000
+        state(
+          {
+            "sample.request": {
+              id: "id1",
+              latestUpdate: Number(constantDate) - 1000
+            }
+          },
+          {
+            id1: {}
           }
-        }),
+        ),
       callback: res => {
         expect(res).toMatchSnapshot();
       }

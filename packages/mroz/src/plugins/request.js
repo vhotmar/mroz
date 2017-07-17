@@ -30,14 +30,9 @@ export const reducer = handleActions(
         ...state,
         [id]: {
           id: action.payload.id,
-          key: id,
-          isFinished: prev.isFinished ? prev.isFinished : false,
-          isPending: true,
-          error: prev ? prev.error : undefined,
           isPolling: action.payload.isPolling,
-          queryCount: prev.queryCount ? prev.queryCáount + 1 : 1,
-          lastUpdated: prev.lastUpdated,
-          data: prev.data
+          queryCount: prev.queryCount ? prev.queryCount + 1 : 1,
+          lastUpdated: prev.lastUpdated
         }
       };
     },
@@ -49,38 +44,7 @@ export const reducer = handleActions(
         ...state,
         [id]: {
           ...prev,
-          isFinished: true,
-          isPending: false,
-          error: undefined,
-          lastUpdated: action.payload.time,
-          data: action.payload.data
-        }
-      };
-    },
-    [actions.fail]: (state, action) => {
-      const id = action.payload.key;
-      const prev = state[id];
-
-      return {
-        ...state,
-        [id]: {
-          ...prev,
-          isFinished: true,
-          isPending: false,
-          error: action.payload.error
-        }
-      };
-    },
-    [actions.cancel]: (state, action) => {
-      const id = action.payload.key;
-      const prev = state[id];
-
-      return {
-        ...state,
-        [id]: {
-          ...prev,
-          isFinished: true,
-          isPending: false
+          lastUpdated: action.payload.time
         }
       };
     }
@@ -93,7 +57,7 @@ export default () =>
     addDependencies({ ajax: rxAjax }),
     addReducers({
       request: combineReducers({
-        requestsByKey: reducer
+        byKey: reducer
       })
     })
   );

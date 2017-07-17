@@ -4,7 +4,10 @@ import actions from "./actions";
 import { Observable } from "rxjs";
 import { request as requestActions } from "../actions";
 import { addWrapper, addFilter, addNormalize } from "../epics/async";
-import { request as requestSelectors } from "../selectors/";
+import {
+  request as requestSelectors,
+  async as asyncSelectors
+} from "../selectors/";
 
 const retryableStatusCodes = [0, 408, 429, 503, 504];
 const defaultBackoffConfig = {
@@ -44,18 +47,20 @@ export default function request(
         // Allow - first time request
         if (!request) return true;
 
+        const requestState = asyncSelectors.state(state, request.id);
+
         // Allow - force request
         if (meta.force) {
-          if (request.isPending) {
+          if (requestState.isPending) {
             // Cancel pending request
-            store.dispatch(requestActions.cancel(request.key));
+            store.dispatch(requestActions.cancel(request.id));
           }
 
           return true;
         }
 
         // Disable - pending request
-        if (request.isPending) {
+        if (requestState.isPending) {
           return false;
         }
 
@@ -74,7 +79,10 @@ export default function request(
     addWrapper((stream$, { id, action$, action, store }) => {
       const cancelStream = action$
         .ofType(String(requestActions.cancel))
-        .filter(action => action.meta.async.id === id);
+        .filter(action => action.payload.id === id)
+        .map(() => {
+          throw new Error("cancel");
+        });
 
       const pollingStream = polling
         ? Observable.interval(polling).filter(() => {
@@ -90,7 +98,8 @@ export default function request(
           })
         : Observable.empty();
 
-      return (
+      return Observable.race(
+        // Cancelation
         stream$
           // Handling errors
           .retryWhen(errors$ => {
@@ -114,12 +123,10 @@ export default function request(
                 }, 0)
                 .delayWhen(() => Observable.timer(backoff.duration()))
             );
-          })
-          // Ensure polling
-          .repeatWhen(pollingStream)
-          // Cancelation
-          .takeUntil(cancelStream)
-      );
+          }),
+        cancelStream
+        // Ensure polling
+      ).repeatWhen(pollingStream);
     }),
     // If everything went correctly, normalize the value
     addNormalize(data => data.response)

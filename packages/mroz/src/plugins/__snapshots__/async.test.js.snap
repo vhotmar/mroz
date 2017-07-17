@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`async plugin plugin should contain correct reducer 1`] = `
+Object {
+  "byId": Object {
+    "id1": Object {
+      "data": undefined,
+      "error": undefined,
+      "isFinished": false,
+      "isPending": true,
+    },
+  },
+}
+`;
+
+exports[`async plugin reducer should handle fail after request 1`] = `
+Object {
+  "id1": Object {
+    "data": undefined,
+    "error": Object {
+      "error": "foo",
+    },
+    "isFinished": true,
+    "isPending": false,
+  },
+}
+`;
+
+exports[`async plugin reducer should handle request action 1`] = `
+Object {
+  "id1": Object {
+    "data": undefined,
+    "error": undefined,
+    "isFinished": false,
+    "isPending": true,
+  },
+}
+`;
+
+exports[`async plugin reducer should handle success after request 1`] = `
+Object {
+  "id1": Object {
+    "data": Object {
+      "data": "foo",
+    },
+    "error": undefined,
+    "isFinished": true,
+    "isPending": false,
+  },
+}
+`;
+
+exports[`async plugin reducer should not reset error after new request 1`] = `
+Object {
+  "id1": Object {
+    "data": undefined,
+    "error": Object {
+      "error": "foo",
+    },
+    "isFinished": true,
+    "isPending": true,
+  },
+}
+`;
+
+exports[`async plugin reducer should reset error after new request and success 1`] = `
+Object {
+  "id1": Object {
+    "data": Object {
+      "data": "foo",
+    },
+    "error": undefined,
+    "isFinished": true,
+    "isPending": false,
+  },
+}
+`;

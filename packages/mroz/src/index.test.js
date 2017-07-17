@@ -9,6 +9,8 @@ describe("index", () => {
       "createRequestActions",
       "wrapAction",
       "promisify",
+      "connectAsync",
+      "connectRequest",
       "epics",
       "arcs",
       "plugins",

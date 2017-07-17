@@ -10,5 +10,7 @@ export { default as createAsyncAction } from "./createAsyncAction";
 export { default as createRequestActions } from "./createRequestActions";
 export { default as wrapAction } from "./wrapAction";
 export { default as promisify } from "./promisify";
+export { default as connectAsync } from "./connectAsync";
+export { default as connectRequest } from "./connectRequest";
 
 export { epics, arcs, plugins, actions, selectors };

@@ -2,47 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/history@*":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.0.tgz#093d67ed780d889c9543f6dca24ebee0b6b9fc45"
-
-"@types/ramda@^0.24.4":
-  version "0.24.4"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.24.4.tgz#dff311f298d471f03c1dc11e52c2abecd14d5cc3"
-
-"@types/react-router-redux@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@types/react-router-redux/-/react-router-redux-5.0.3.tgz#a249d2ce445297a557c8d1769f51edea6f54d6a2"
-  dependencies:
-    "@types/history" "*"
-    "@types/react" "*"
-    redux "^3.6.0"
-
-"@types/react@*":
-  version "15.0.38"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.38.tgz#6afea31a9fe66304af474106ba372ddaba449995"
-
-"@types/redux-actions@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@types/redux-actions/-/redux-actions-1.2.6.tgz#cfdeea3271ebdabf23cdc237080e752b07171069"
-
-"@types/redux-form@^6.6.7":
-  version "6.6.7"
-  resolved "https://registry.yarnpkg.com/@types/redux-form/-/redux-form-6.6.7.tgz#28faf023ab8692ae3b735b843b89c22d3dbe0bf3"
-  dependencies:
-    "@types/react" "*"
-    redux "^3.6.0"
-
-"@types/redux-logger@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/redux-logger/-/redux-logger-3.0.0.tgz#abe464fe812d03c3580ec56e6b5b375861439fca"
-  dependencies:
-    redux "^3.6.0"
-
-"@types/webpack-env@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.0.tgz#3044381647e11ee973c5af2e925323930f691d80"
-
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -3293,7 +3252,7 @@ redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@^3.6.0, redux@^3.7.1:
+redux@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.1.tgz#bfc535c757d3849562ead0af18ac52122cd7268e"
   dependencies:
@@ -3402,6 +3361,10 @@ require-uncached@^1.0.2:
   dependencies:
     caller-path "^0.1.0"
     resolve-from "^1.0.0"
+
+reselect@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
 
 resolve-from@^1.0.0:
   version "1.0.1"
@@ -3785,10 +3748,6 @@ type-check@~0.3.2:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-typescript@2.5:
-  version "2.5.0-dev.20170712"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.0-dev.20170712.tgz#bd6bfd67bd532dd5c6cdd976a42c343c8da705cd"
 
 ua-parser-js@^0.7.9:
   version "0.7.13"

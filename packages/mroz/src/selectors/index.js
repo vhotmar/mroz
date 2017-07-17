@@ -1,4 +1,5 @@
-import * as request from "./request";
 import * as auth from "./auth";
+import * as async from "./async";
+import * as request from "./request";
 
-export { request, auth };
+export { auth, async, request };

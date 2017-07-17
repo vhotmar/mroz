@@ -1,1 +1,1 @@
-export const requestByKey = (state, key) => state.request.requestsByKey[key];
+export const requestByKey = (state, key) => state.request.byKey[key];

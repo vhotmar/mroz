@@ -2,15 +2,10 @@
 
 exports[`request plugin plugin should contain correct reducer 1`] = `
 Object {
-  "requestsByKey": Object {
+  "byKey": Object {
     "key1": Object {
-      "data": undefined,
-      "error": undefined,
       "id": "id1",
-      "isFinished": false,
-      "isPending": true,
       "isPolling": false,
-      "key": "key1",
       "lastUpdated": undefined,
       "queryCount": 1,
     },
@@ -21,13 +16,8 @@ Object {
 exports[`request plugin reducer should handle cancel after request 1`] = `
 Object {
   "key1": Object {
-    "data": undefined,
-    "error": undefined,
     "id": "id1",
-    "isFinished": true,
-    "isPending": false,
     "isPolling": false,
-    "key": "key1",
     "lastUpdated": undefined,
     "queryCount": 1,
   },
@@ -37,15 +27,8 @@ Object {
 exports[`request plugin reducer should handle fail after request 1`] = `
 Object {
   "key1": Object {
-    "data": undefined,
-    "error": Object {
-      "error": "foo",
-    },
     "id": "id1",
-    "isFinished": true,
-    "isPending": false,
     "isPolling": false,
-    "key": "key1",
     "lastUpdated": undefined,
     "queryCount": 1,
   },
@@ -55,13 +38,8 @@ Object {
 exports[`request plugin reducer should handle request action 1`] = `
 Object {
   "key1": Object {
-    "data": undefined,
-    "error": undefined,
     "id": "id1",
-    "isFinished": false,
-    "isPending": true,
     "isPolling": false,
-    "key": "key1",
     "lastUpdated": undefined,
     "queryCount": 1,
   },
@@ -71,15 +49,8 @@ Object {
 exports[`request plugin reducer should handle success after request 1`] = `
 Object {
   "key1": Object {
-    "data": Object {
-      "data": "foo",
-    },
-    "error": undefined,
     "id": "id1",
-    "isFinished": true,
-    "isPending": false,
     "isPolling": false,
-    "key": "key1",
     "lastUpdated": 1497328880000,
     "queryCount": 1,
   },
@@ -89,17 +60,10 @@ Object {
 exports[`request plugin reducer should not reset error after new request 1`] = `
 Object {
   "key1": Object {
-    "data": undefined,
-    "error": Object {
-      "error": "foo",
-    },
     "id": "id1",
-    "isFinished": true,
-    "isPending": true,
     "isPolling": false,
-    "key": "key1",
     "lastUpdated": undefined,
-    "queryCount": NaN,
+    "queryCount": 2,
   },
 }
 `;
@@ -107,17 +71,10 @@ Object {
 exports[`request plugin reducer should reset error after new request and success 1`] = `
 Object {
   "key1": Object {
-    "data": Object {
-      "data": "foo",
-    },
-    "error": undefined,
     "id": "id1",
-    "isFinished": true,
-    "isPending": false,
     "isPolling": false,
-    "key": "key1",
     "lastUpdated": 1497328880000,
-    "queryCount": NaN,
+    "queryCount": 2,
   },
 }
 `;

@@ -25,6 +25,6 @@ export const fail = createAction("@@mroz/REQUEST_FAIL", (id, key, error) => ({
   error
 }));
 
-export const cancel = createAction("@@mrot/REQUEST_CANCEL", key => ({
-  key
+export const cancel = createAction("@@mrot/REQUEST_CANCEL", id => ({
+  id
 }));
